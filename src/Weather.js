@@ -26,6 +26,15 @@ export default function Weather(props) {
     });
   }
 
+  function titleCase(str) {
+    return str
+      .split(" ")
+      .map(function (word) {
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(" ");
+  }
+
   function getWeather() {
     axios.get(url).then(handleResponse);
   }
@@ -47,7 +56,7 @@ export default function Weather(props) {
       <div>
         <div className="row justify-content-center">
           <div className="col-6 offset-3">
-            <h1>{display.city}</h1>
+            <h1>{titleCase(display.city)}</h1>
           </div>
           <FormatDate dateTime={display.dateTime} />
         </div>
