@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import CurrentWeather from "./CurrentWeather";
+import FormatDate from "./FormatDate";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -13,15 +14,15 @@ export default function Weather(props) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
   function handleResponse(response) {
-    console.log(response.data);
     setDisplay({
-      city: city,
       ready: true,
-      temp: `${Math.round(response.data.main.temp)}°C`,
+      city: city,
+      dateTime: response.data.dt * 1000,
+      temp: response.data.main.temp,
       weather: response.data.weather[0].main,
       humidity: `${response.data.main.humidity}%`,
       windSpeed: `${response.data.wind.speed} km/h`,
-      image: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      iconCode: response.data.weather[0].icon,
     });
   }
 
@@ -40,7 +41,7 @@ export default function Weather(props) {
 
   if (!display.ready) {
     getWeather();
-    return "Loading...";
+    return "Loading..";
   } else {
     return (
       <div>
@@ -48,9 +49,7 @@ export default function Weather(props) {
           <div className="col-6 offset-3">
             <h1>{display.city}</h1>
           </div>
-          <div className="col-3 time-and-unit-container">
-            <div>Wednesday 22:00</div>
-          </div>
+          <FormatDate dateTime={display.dateTime} />
         </div>
         <div className="row justify-content-center">
           <form className="location-updater-form" onSubmit={handleSubmit}>

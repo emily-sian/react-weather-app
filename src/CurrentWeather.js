@@ -1,4 +1,7 @@
 import React from "react";
+import WeatherIcon from "./WeatherIcon";
+import "./CurrentWeather.css";
+import Temperature from "./Temperature";
 
 export default function CurrentWeather(props) {
   return (
@@ -11,24 +14,12 @@ export default function CurrentWeather(props) {
       </div>
       <div className="col-3">
         <h2>
-          <img
-            className="current-weather-icon"
-            id="current-weather-icon"
-            src=""
-            alt=""
-          />
+          <WeatherIcon iconCode={props.display.iconCode} />
         </h2>
       </div>
       <div className="col-3">
         <h2>
-          {props.display.temp}
-          {""}
-          <span className="units">
-            <a className="active" href="/">
-              °C
-            </a>{" "}
-            |<a href="/">°F</a>
-          </span>
+          <Temperature temp={props.display.temp} />
         </h2>
         <div className="weather-details">
           Wind Speed:{props.display.windSpeed}
