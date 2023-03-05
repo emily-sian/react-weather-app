@@ -1,3 +1,34 @@
+h1 {
+  font-size: 48px;
+  margin: 14px;
+  text-align: center;
+}
+.date-time {
+  text-align: end;
+  font-size: 14px;
+}
+
+h2 {
+  margin: 14px auto;
+  text-align: center;
+}
+.current-weather-icon {
+  color: #644e90;
+  font-size: 58px;
+  margin: 10px;
+}
+.weather-details {
+  font-size: smaller;
+  text-align: center;
+}
+.units {
+  font-size: small;
+}
+.units .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+  text-decoration: none;
+}
 .location-updater-form {
   margin: 0 auto 24px;
   text-align: center;

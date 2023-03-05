@@ -1,15 +1,13 @@
 import React from "react";
-import "./CurrentWeather.css";
-export default function CurrentWeather() {
+
+export default function CurrentWeather(props) {
   return (
     <div className="row justify-content-center">
       <div className="col-3">
         <h2>
-          <div id="current-weather">Stormy</div>
+          <div>{props.display.weather}</div>
         </h2>
-        <div className="weather-details">
-          Humidity: <span id="humidity">27</span>%
-        </div>
+        <div className="weather-details">Humidity:{props.display.humidity}</div>
       </div>
       <div className="col-3">
         <h2>
@@ -23,22 +21,17 @@ export default function CurrentWeather() {
       </div>
       <div className="col-3">
         <h2>
-          <div>
-            <span id="current-temperature">27</span>
-            <span className="units">
-              <a id="celsius" className="active" href="/">
-                °C
-              </a>{" "}
-              |
-              <a id="farenheit" href="/">
-                °F
-              </a>
-            </span>
-          </div>
+          {props.display.temp}
+          {""}
+          <span className="units">
+            <a className="active" href="/">
+              °C
+            </a>{" "}
+            |<a href="/">°F</a>
+          </span>
         </h2>
-
         <div className="weather-details">
-          Wind Speed: <span id="wind-speed">27</span>km
+          Wind Speed:{props.display.windSpeed}
         </div>
       </div>
     </div>
